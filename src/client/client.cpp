@@ -1,11 +1,6 @@
-#include <iostream>
-#include <string>
-#include <WS2tcpip.h>
-#pragma comment(lib, "ws2_32.lib")
+#include "client.h"
 
-using namespace std;
-
-int main()
+void Client()
 {
     string ipAddress = "127.0.0.1";			// IP Address of the server
     int port = 54000;						// Listening port # on the server
@@ -17,7 +12,7 @@ int main()
     if (wsResult != 0)
     {
         cerr << "Can't start Winsock, Err #" << wsResult << endl;
-        return 1;
+        return;
     }
 
     // Create socket
@@ -26,7 +21,7 @@ int main()
     {
         cerr << "Can't create socket, Err #" << WSAGetLastError() << endl;
         WSACleanup();
-        return 1;
+        return;
     }
 
     // Fill in a hint structure
@@ -42,7 +37,7 @@ int main()
         cerr << "Can't connect to server, Err #" << WSAGetLastError() << endl;
         closesocket(sock);
         WSACleanup();
-        return 1;
+        return;
     }
 
     // Do-while loop to send and receive data
