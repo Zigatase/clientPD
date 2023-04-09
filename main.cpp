@@ -11,7 +11,7 @@ int main()
     int port = 54000;						// Listening port # on the server
 
     // Initialize WinSock
-    WSAData data;
+    WSAData data{};
     WORD ver = MAKEWORD(2, 2);
     int wsResult = WSAStartup(ver, &data);
     if (wsResult != 0)
@@ -30,7 +30,7 @@ int main()
     }
 
     // Fill in a hint structure
-    sockaddr_in hint;
+    sockaddr_in hint{};
     hint.sin_family = AF_INET;
     hint.sin_port = htons(port);
     inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
@@ -66,8 +66,8 @@ int main()
                 int bytesReceived = recv(sock, buf, 4096, 0);
                 if (bytesReceived > 0)
                 {
-                    // Echo response to console
-                    cout << "SERVER> " << string(buf, 0, bytesReceived) << endl;
+                    // Echo response to console | SM = Server Message
+                    cout << "[SM] -> " << string(buf, 0, bytesReceived) << endl;
                 }
             }
         }
