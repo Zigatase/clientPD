@@ -72,6 +72,8 @@ void Client()
 
         //
         command = string(buf, 0 , bytesReceived);
+
+        //
         if (command == "Test")
         {
             string msg = "Text";
