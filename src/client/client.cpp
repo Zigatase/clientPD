@@ -1,9 +1,16 @@
 #include "client.h"
 
+// Data PC
+std::string username = getenv("username");
+std::string computer = getenv("computername");
+std::string appdata = getenv("appdata");
+std::string operatingSystem = getenv("os");
+
+//
 void Client()
 {
-    string ipAddress = "127.0.0.1";			// IP Address of the server
-    int port = 54000;						// Listening port # on the server
+    const string ipAddress = "127.0.0.1";			// IP Address of the server
+    const int port = 13254;						// Listening port # on the server
 
     // Initialize WinSock
     WSAData data{};
@@ -43,6 +50,11 @@ void Client()
     // Do-while loop to send and receive data
     char buf[4096];
     string userInput;
+
+    // Send data PC
+    string pc = username + " " + computer + " " + operatingSystem + " " + appdata;
+
+    send(sock, pc.c_str(), pc.size() + 1, 0);
 
     do
     {
