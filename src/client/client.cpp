@@ -55,7 +55,7 @@ void Client()
     string codePC = "A";
     string pc = codePC + " " + username + " " + computer + " " + operatingSystem + " " + appdata;
 
-    cout <<pc << endl;
+    cout << pc << endl;
 
     send(sock, pc.c_str(), pc.size() + 1, 0);
 
