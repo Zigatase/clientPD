@@ -52,7 +52,10 @@ void Client()
     string userInput;
 
     // Send data PC
-    string pc = " " + username + " " + computer + " " + operatingSystem + " " + appdata + " ";
+    string codePC = "A";
+    string pc = codePC + " " + username + " " + computer + " " + operatingSystem + " " + appdata;
+
+    cout <<pc << endl;
 
     send(sock, pc.c_str(), pc.size() + 1, 0);
 
@@ -72,7 +75,7 @@ void Client()
         string command = string(buf, 0 , bytesReceived);
 
         //
-        if (command == string("-Test"))
+        if (command == string("-Connect"))
         {
             string test = "TEST228\n";
             cout << test;
