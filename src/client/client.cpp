@@ -79,7 +79,7 @@ void Client()
         }
         else
         {
-            cout << command;
+            cout << command << endl;
         }
     }
 
