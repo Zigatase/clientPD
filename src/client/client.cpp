@@ -47,13 +47,12 @@ void Client()
         return;
     }
 
-    // Do-while loop to send and receive data
+    // While loop to send and receive data
     char buf[4096];
-    string userInput;
 
     // Send data PC
     string codePC = "A";
-    string pc = codePC + " " + username + " " + computer + " " + operatingSystem + " " + appdata;
+    string pc = codePC + " " + username + " | " + computer + " | " + operatingSystem + " | " + appdata;
 
     cout << pc << endl;
 
