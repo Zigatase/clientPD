@@ -1,8 +1,6 @@
 #ifndef CLIENTPD_CLIENT_H
 #define CLIENTPD_CLIENT_H
 
-#endif //CLIENTPD_CLIENT_H
-
 ///////////////////////////////
 
 #include <iostream>
@@ -14,3 +12,5 @@
 using namespace std;
 
 void Client();
+
+#endif //CLIENTPD_CLIENT_H
